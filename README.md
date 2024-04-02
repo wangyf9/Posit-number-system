@@ -10,27 +10,16 @@ And other format details are as follows:
 3.  Exponent bit: This field represents an unsigned integer number, but it doesn't need to minus an offset which is usually used in IEEE754. Due to the regime field, if there is no remaining bits, then exponent bit is equal to zero. If not, the exponent bit is allowed up to **es** bits.
 4.  Fraction bit: This field represents the decimal number. But only if there are remaining bits, it can work. Besides, it's same as the IEEE754 standard, with a hidden bit **1** before the fraction decimal point.
 
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="./img/Figure_Posit_16_3.png">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">eg. 16_3 posit number system</div>
-</center>
+<div align=center>
+<img src="./img/Figure_Posit_16_3.png" width="600" height="250" />
+</div>
+<p align="center">eg. 16_3 posit number system representation</p>
 
 In our implementation, we apply it for NGP to improve the performance of NGP, and the conclusion are as follows:
 
 Under the IEEE754 floating-point standard, the arithmetic operations with floating-point numbers often generate a significant number of NaNs, while the posit number system yields almost no NaNs in its computation results. This characteristic of posit significantly enhances the precision of calculations. Incorporating a 16-bit posit number system into the Instant NGP results in a reduction of bit width by half. At the same time, it leads to higher or comparable image resolution quality. The use of 12-bit and 10-bit posit number systems further decreases the bit width, albeit with a slight loss in PSNR. Conversely, employing an 8-bit posit number system and a 10-bit fixed-point system results in a substantial decline in the reconstructed image quality, highlighting the advantages of the 10-bit posit through comparative experiments. Concurrently, the reduction in bit width enables the storage and retrieval of data in a smaller memory space, thus lowering the complexity of hardware design and energy costs during memory access operations.
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="./img/lego_posit_16_3.png">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">eg. Lego performance when 16_3 posit number system used in NGP </div>
-</center>
+
+<div align=center>
+<img src="./img/lego_posit_16_3.png" width="600" height="600" />
+</div>
+<p align="center">eg. Lego performance when 16_3 posit number system used in NGP</p>
